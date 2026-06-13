@@ -1,6 +1,7 @@
 import { Animal } from "../models/animals";
 import { get } from "./serviceBase";
 import { AnimalDetails } from "../models/animalDetails";
+import { MS_PER_HOUR, HOURS_THRESHOLD_3, HOURS_THRESHOLD_4 } from "@/app/constants";
 
 const API_URL = "https://animals.azurewebsites.net/api/animals";
 
@@ -101,16 +102,16 @@ export const checkIfNeedsFeeding = (lastFed: Date | null): boolean => {
     if (!lastFed) return true;
     const now = new Date();
     const lastFedDate = new Date(lastFed);
-    const hoursSinceFed = (now.getTime() - lastFedDate.getTime()) / (1000 * 60 * 60);
-    return hoursSinceFed > 4;
+    const hoursSinceFed = (now.getTime() - lastFedDate.getTime()) / MS_PER_HOUR;
+    return hoursSinceFed > HOURS_THRESHOLD_4;
 };
 
 export const checkIfFeedingExpired = (lastFed: Date | null): boolean => {
     if (!lastFed) return false;
     const now = new Date();
     const lastFedDate = new Date(lastFed);
-    const hoursSinceFed = (now.getTime() - lastFedDate.getTime()) / (1000 * 60 * 60);
-    return hoursSinceFed > 3;
+    const hoursSinceFed = (now.getTime() - lastFedDate.getTime()) / MS_PER_HOUR;
+    return hoursSinceFed > HOURS_THRESHOLD_3;
 };
 
 export const resetFeedingIfExpired = (id: number): boolean => {

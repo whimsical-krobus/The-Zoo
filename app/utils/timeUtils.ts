@@ -1,6 +1,4 @@
-const HOURS_THRESHOLD_3 = 0.5;
-const HOURS_THRESHOLD_4 = 1;
-const MS_PER_HOUR = 1000 * 60 * 60;
+import { MS_PER_HOUR, HOURS_THRESHOLD_3, HOURS_THRESHOLD_4 } from "@/app/constants";
 
 export const getHoursSince = (date: Date | null): number => {
     if (!date) return Infinity;
