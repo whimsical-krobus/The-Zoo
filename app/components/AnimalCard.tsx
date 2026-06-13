@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Animal } from "@/app/models/Animals";
+import { Animal } from "@/app/models/animals";
 import { handleImageError, getImageUrl } from "@/app/utils/imageUtils";
 
 interface AnimalCardProps {

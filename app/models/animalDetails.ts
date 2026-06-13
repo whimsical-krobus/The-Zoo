@@ -1,4 +1,4 @@
-import { Animal } from "./Animals";
+import { Animal } from "./animals";
 
 export type AnimalDetails = Animal & {
     latinName: string;

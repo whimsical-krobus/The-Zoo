@@ -1,6 +1,6 @@
 "use client";
 
-import { Animal } from "@/app/models/Animals";
+import { Animal } from "@/app/models/animals";
 import { AnimalCard } from "./AnimalCard";
 
 interface AnimalListProps {
