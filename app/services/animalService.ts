@@ -1,6 +1,6 @@
-import { Animal } from "../models/Animals";
+import { Animal } from "../models/animals";
 import { get } from "./serviceBase";
-import { AnimalDetails } from "../models/AnimalDetails";
+import { AnimalDetails } from "../models/animalDetails";
 
 const API_URL = "https://animals.azurewebsites.net/api/animals";
 

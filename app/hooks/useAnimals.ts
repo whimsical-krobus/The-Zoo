@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Animal } from "@/app/models/Animals";
+import { Animal } from "../models/animals";
 import { getAnimals } from "@/app/services/animalService";
 
 export const useAnimals = () => {
