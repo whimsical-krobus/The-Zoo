@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { updateAnimalFedStatus, checkIfNeedsFeeding } from "@/app/services/animalService";
 
+const FEEDING_STATUS_CHECK_INTERVAL = 60000; // 1 minute in milliseconds
+
 export const useFeedingStatus = (animalId: number, onFeedingUpdate?: (isFed: boolean, lastFed: Date | null) => void) => {
     const [isFed, setIsFed] = useState(false);
     const [lastFed, setLastFed] = useState<Date | null>(null);
@@ -30,6 +32,21 @@ export const useFeedingStatus = (animalId: number, onFeedingUpdate?: (isFed: boo
     useEffect(() => {
         const needsFed = checkIfNeedsFeeding(lastFed);
         setNeedsFeeding(needsFed);
+    }, [lastFed]);
+
+    // Set up a timer to update needsFeeding status every minute
+    useEffect(() => {
+        // Initial check
+        const needsFed = checkIfNeedsFeeding(lastFed);
+        setNeedsFeeding(needsFed);
+
+        // Update every minute to check if feeding status needs updating
+        const interval = setInterval(() => {
+            const needsFed = checkIfNeedsFeeding(lastFed);
+            setNeedsFeeding(needsFed);
+        }, FEEDING_STATUS_CHECK_INTERVAL);
+
+        return () => clearInterval(interval);
     }, [lastFed]);
 
     const handleFeed = () => {
