@@ -4,9 +4,6 @@ import { AnimalDetails } from "../models/animalDetails";
 
 const API_URL = "https://animals.azurewebsites.net/api/animals";
 
-/**
- * Helper function to convert lastFed string to Date object
- */
 const convertLastFedToDate = <T extends { lastFed?: any }>(animal: T): T => {
     return {
         ...animal,
@@ -17,8 +14,8 @@ const convertLastFedToDate = <T extends { lastFed?: any }>(animal: T): T => {
 export const getAnimals = async () => {
     try {
         const data = await get<Animal[]>(API_URL);
-        // Initialize animals with feeding data from storage if available
         const storedAnimals = localStorage.getItem("animals");
+
         if (storedAnimals) {
             const stored = JSON.parse(storedAnimals) as any[];
             const enrichedData = data.map(animal => {
@@ -27,15 +24,17 @@ export const getAnimals = async () => {
                     ? convertLastFedToDate(storedAnimal)
                     : { ...animal, isFed: false, lastFed: null };
             });
+
             localStorage.setItem("animals", JSON.stringify(enrichedData));
             return enrichedData;
         }
-        // First time - initialize all with empty feeding status
+
         const initializedData = data.map(animal => ({ 
             ...animal, 
             isFed: false, 
             lastFed: null 
         }));
+        
         localStorage.setItem("animals", JSON.stringify(initializedData));
         return initializedData;
     } catch (error) {
