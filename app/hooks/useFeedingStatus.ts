@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { updateAnimalFedStatus, checkIfNeedsFeeding } from "@/app/services/animalService";
-
-const FEEDING_STATUS_CHECK_INTERVAL = 60000;
+import { FEEDING_STATUS_CHECK_INTERVAL, STORAGE_KEY_ANIMALS } from "@/app/constants";
 
 export const useFeedingStatus = (animalId: number, onFeedingUpdate?: (isFed: boolean, lastFed: Date | null) => void) => {
     const [isFed, setIsFed] = useState(false);
@@ -11,7 +10,7 @@ export const useFeedingStatus = (animalId: number, onFeedingUpdate?: (isFed: boo
     const [needsFeeding, setNeedsFeeding] = useState(false);
 
     useEffect(() => {
-        const animals = localStorage.getItem("animals");
+        const animals = localStorage.getItem(STORAGE_KEY_ANIMALS);
         if (animals) {
             try {
                 const data = JSON.parse(animals);
