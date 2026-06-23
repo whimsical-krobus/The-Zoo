@@ -22,13 +22,13 @@ export default function Home() {
               Zooet där lite spring i benen är en vanlig biverkning av matning 🐾
             </h2>
 
-            <div className="bg-blue-50 dark:bg-blue-900 border-l-4 border-blue-500 text-blue-700 dark:text-blue-200 p-6 rounded mb-8">
+            <div className="bg-green-50 dark:bg-green-900 border-l-4 border-green-500 text-green-700 dark:text-green-200 p-6 rounded mb-8">
                 <p className="text-lg mb-3">
                     Välkommen till vårt fantastiska zoo! Här kan du se vilka av våra djur som behöver matas just nu.
                 </p>
                 <p className="text-sm">
                     Om ett djur inte visas här betyder det att det redan är matat och inte behöver mat inom de närmaste 4 timmarna.
-                    Besök <span className="font-semibold">"Möt våra djur"</span> för att se alla djur i zooet!
+                    Besök <span className="font-semibold">"Djuren"</span> för att se alla djur i zooet!
                 </p>
             </div>
 
