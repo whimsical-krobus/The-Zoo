@@ -8,7 +8,6 @@ import { isMoreThan4HoursPassed } from "./utils/timeUtils";
 export default function Home() {
     const { animals, loading, error } = useAnimals();
 
-    // Find animals that need feeding (> 4 hours)
     const animalsNeedingFood = animals.filter(
         (animal) => isMoreThan4HoursPassed(animal.lastFed)
     );
